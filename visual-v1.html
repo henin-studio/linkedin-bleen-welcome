@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis Henin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: #0D2B1E;
+      overflow: hidden;
+    }
+
+    /* Noise texture */
+    .canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-conic-gradient(
+        rgba(255,255,255,0.03) 0%,
+        transparent 0.003%,
+        transparent 0.007%
+      );
+      background-size: 3px 3px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Inset frame border */
+    .frame {
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(30, 232, 160, 0.1);
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Radial glow behind name */
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(30, 232, 160, 0.06) 0%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Top label */
+    .top-area {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 60px 60px 0;
+      z-index: 3;
+    }
+
+    .label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: #1EE8A0;
+      text-transform: uppercase;
+    }
+
+    /* Center content */
+    .center-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 64px;
+      color: #FFFFFF;
+      line-height: 1;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .separator {
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #1EE8A0;
+      margin: 28px auto;
+      animation: growLine 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    }
+
+    @keyframes growLine {
+      from {
+        width: 0;
+      }
+      to {
+        width: 50px;
+      }
+    }
+
+    .role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* Bottom area */
+    .bottom-area {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 60px 50px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      z-index: 3;
+    }
+
+    .brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      color: #1EE8A0;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .url {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="frame"></div>
+    <div class="glow"></div>
+
+    <div class="top-area">
+      <span class="label">Nouvelle recrue</span>
+    </div>
+
+    <div class="center-content">
+      <h1 class="name">Denis Henin</h1>
+      <span class="separator"></span>
+      <p class="role">Graphic Designer</p>
+    </div>
+
+    <div class="bottom-area">
+      <span class="brand">bleen</span>
+      <span class="url">bleen.be</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis Henin v6</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      position: relative;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Two-tone split background */
+    .bg-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 432px;
+      height: 1080px;
+      background: #1EE8A0;
+    }
+
+    .bg-right {
+      position: absolute;
+      top: 0;
+      left: 432px;
+      width: 648px;
+      height: 1080px;
+      background: #0D2B1E;
+    }
+
+    /* Subtle vertical divider shadow */
+    .bg-left::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Logo top-left — on emerald background */
+    .logo {
+      position: absolute;
+      top: 52px;
+      left: 50px;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0D2B1E;
+      letter-spacing: -0.5px;
+      z-index: 10;
+    }
+
+    /* Main content block — centered vertically */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 1080px;
+      transform: translateY(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /*
+      Split-color text technique:
+      Two absolutely-positioned copies of the same text are stacked.
+      The top copy is clipped to the left zone (shows dark green on emerald bg).
+      The bottom copy is clipped to the right zone (shows white on dark bg).
+    */
+    .name-row {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .name-row + .name-row {
+      margin-top: 0;
+    }
+
+    .name-text {
+      font-size: 158px;
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      /* Base layer — visible on right (dark) side */
+      color: #ffffff;
+    }
+
+    /* Overlay clipped to left zone — dark green on emerald */
+    .name-text-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      font-size: 158px;
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #0D2B1E;
+      clip-path: inset(0 648px 0 0);
+    }
+
+    /* Divider line — spans centered under name */
+    .divider {
+      width: 56px;
+      height: 2px;
+      margin-top: 40px;
+      margin-bottom: 28px;
+      background: linear-gradient(90deg, #0D2B1E 40%, #1EE8A0 40%);
+    }
+
+    /* Role label */
+    .role {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      /* Split color same technique via gradient */
+      background: linear-gradient(90deg, #0D2B1E 40%, #ffffff 40%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Bottom URL — on dark zone, bottom-right */
+    .website {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.28);
+      letter-spacing: 0.3px;
+      z-index: 10;
+    }
+
+    /* Small "joins" label — bottom-left of content block */
+    .joins-line {
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(13, 43, 30, 0.7);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Split background -->
+  <div class="bg-left"></div>
+  <div class="bg-right"></div>
+
+  <!-- Logo -->
+  <div class="logo">bleen</div>
+
+  <!-- Main centered content -->
+  <div class="content">
+
+    <!-- DENIS row -->
+    <div class="name-row">
+      <span class="name-text">DENIS</span>
+      <span class="name-text-overlay">DENIS</span>
+    </div>
+
+    <!-- HENIN row -->
+    <div class="name-row">
+      <span class="name-text">HENIN</span>
+      <span class="name-text-overlay">HENIN</span>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Role -->
+    <div class="role">Graphic Designer</div>
+
+  </div>
+
+  <!-- Bottom labels -->
+  <div class="joins-line">rejoint l'équipe</div>
+  <div class="website">bleen.be</div>
+
+</body>
+</html>

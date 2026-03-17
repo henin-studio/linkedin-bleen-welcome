@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis Henin, Graphic Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: #0D2B1E;
+      overflow: hidden;
+    }
+
+    /* Noise texture overlay */
+    .canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Giant decorative quotation mark */
+    .giant-quote {
+      position: absolute;
+      top: -80px;
+      left: 30px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 500px;
+      color: #1EE8A0;
+      opacity: 0.06;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Radial glow behind quote text */
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(30, 232, 160, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Top-right logo */
+    .logo {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: #1EE8A0;
+      letter-spacing: -0.02em;
+      z-index: 10;
+    }
+
+    /* Center content */
+    .center-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1080px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 100px;
+      z-index: 10;
+    }
+
+    .quote-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 38px;
+      color: #FFFFFF;
+      line-height: 1.5;
+      text-align: center;
+      text-shadow: 0 0 60px rgba(30, 232, 160, 0.1);
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: #1EE8A0;
+      margin-top: 30px;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      margin-top: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1EE8A0;
+    }
+
+    .author-role {
+      margin-top: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Bottom URL */
+    .bottom-url {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+
+    <div class="giant-quote">&ldquo;</div>
+
+    <div class="glow"></div>
+
+    <div class="logo">bleen</div>
+
+    <div class="center-content">
+      <p class="quote-text">Rendre la durabilité visible, claire<br>et honnête. C'est ce qui m'a amené ici.</p>
+      <div class="divider"></div>
+      <p class="author-name">Denis Henin</p>
+      <p class="author-role">Graphic Designer — Bleen</p>
+    </div>
+
+    <div class="bottom-url">bleen.be</div>
+
+  </div>
+</body>
+</html>

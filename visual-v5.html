@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis Henin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: #0D2B1E;
+      position: relative;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Giant "01" watermark */
+    .watermark {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-52%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      font-size: 400px;
+      line-height: 1;
+      color: rgba(30, 232, 160, 0.06);
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: absolute;
+      top: 50px;
+      left: 60px;
+      right: 60px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      z-index: 2;
+    }
+
+    /* Main layout */
+    .layout {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    .header {
+      padding-top: 80px;
+      padding-left: 70px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 28px;
+      color: #1EE8A0;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-separator {
+      width: 3px;
+      height: 40px;
+      background-color: #1EE8A0;
+      margin: 30px 0;
+    }
+
+    /* Main content */
+    .content {
+      padding-left: 70px;
+      padding-right: 80px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+
+    .eyebrow {
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(30, 232, 160, 0.6);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 2px solid #1EE8A0;
+    }
+
+    .name-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 30px;
+    }
+
+    .name {
+      font-weight: 800;
+      font-size: 64px;
+      color: #FFFFFF;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-weight: 400;
+      font-size: 64px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      font-weight: 700;
+      font-size: 24px;
+      color: #1EE8A0;
+      letter-spacing: 0.01em;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 0 60px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-site {
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #1EE8A0;
+    }
+
+    .footer-date {
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Noise is handled via body::before -->
+
+  <!-- Giant watermark -->
+  <div class="watermark">01</div>
+
+  <!-- Top decorative line -->
+  <div class="top-bar"></div>
+
+  <!-- Main layout -->
+  <div class="layout">
+
+    <div class="header">
+      <div class="brand">bleen</div>
+      <div class="brand-separator"></div>
+    </div>
+
+    <div class="content">
+      <p class="eyebrow">Chapitre suivant</p>
+      <div class="name-block">
+        <span class="name">Denis Henin</span>
+        <span class="subtitle">rejoint l'équipe.</span>
+      </div>
+      <p class="role">Graphic Designer</p>
+    </div>
+
+    <div class="footer">
+      <span class="footer-site">bleen.be</span>
+      <div class="footer-dot"></div>
+      <span class="footer-date">Mars 2026</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
