@@ -23,21 +23,22 @@
 
     body {
       position: relative;
+      background: #0D2B1E;
     }
 
-    /* Noise texture overlay */
-    body::before {
+    /* Noise */
+    body::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       opacity: 0.03;
       pointer-events: none;
-      z-index: 20;
+      z-index: 50;
     }
 
-    /* Two-tone split background */
-    .bg-left {
+    /* Emerald left panel */
+    .panel-left {
       position: absolute;
       top: 0;
       left: 0;
@@ -46,16 +47,7 @@
       background: #1EE8A0;
     }
 
-    .bg-right {
-      position: absolute;
-      top: 0;
-      left: 432px;
-      width: 648px;
-      height: 1080px;
-      background: #0D2B1E;
-    }
-
-    /* Logo top-left — on emerald background */
+    /* Logo */
     .logo {
       position: absolute;
       top: 50px;
@@ -63,127 +55,64 @@
       font-size: 28px;
       font-weight: 800;
       color: #0D2B1E;
-      letter-spacing: -0.5px;
       z-index: 10;
     }
 
-    /* Main content block — vertically centered */
-    .content {
+    /* Content — two identical layers, one per zone */
+    .text-layer {
       position: absolute;
-      top: 50%;
+      top: 0;
       left: 0;
       width: 1080px;
-      transform: translateY(-50%);
-      z-index: 10;
+      height: 1080px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      justify-content: center;
+      padding-left: 340px;
+      gap: 0;
     }
 
-    /*
-      Split-color name technique:
-      gradient text with background-clip.
-      40% = 432px / 1080px = left emerald zone → dark green text
-      60% = right dark zone → white text
-      The gradient origin is the element's own bounding box,
-      so we must account for the element's horizontal offset.
-      Since .content is full-width (1080px) and text is centered,
-      the name box is centered. We use a per-element gradient
-      that remaps 40% of the full canvas onto the text element's own width.
-    */
-    .name-text {
+    .text-layer .name {
       font-size: 120px;
       font-weight: 800;
       line-height: 0.9;
-      letter-spacing: -0.03em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      white-space: nowrap;
-      display: block;
-      /*
-        gradient-text trick:
-        We need the color split at exactly x=432px of the 1080px canvas.
-        The text is centered on 1080px, so we know text width ≈ 480px
-        and starts at ≈ (1080 - 480) / 2 = 300px from left.
-        The split should be at 432 - 300 = 132px into the text, i.e. 132/480 ≈ 27.5%.
-        But to keep it simple and robust, we use a wider gradient that
-        references the full viewport by making the element full-width.
-        See .name-wrapper below.
-      */
     }
 
-    /* Wrapper spans full width so gradient % maps to canvas % */
-    .name-wrapper {
-      width: 1080px;
-      display: flex;
-      justify-content: center;
+    .text-layer .divider {
+      width: 60px;
+      height: 3px;
+      margin: 28px 0 20px;
     }
 
-    .name-wrapper .name-text {
-      background: linear-gradient(90deg, #0D2B1E 40%, #FFFFFF 40%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      /*
-        background-size covers the wrapper (1080px wide),
-        and since the wrapper is 1080px, 40% = 432px exactly.
-        background-clip: text clips to the text glyphs only,
-        but the gradient still references the full 1080px box.
-      */
-      background-size: 1080px 100%;
-      background-position: left center;
-    }
-
-    .name-wrapper + .name-wrapper {
-      margin-top: 0;
-    }
-
-    /* Divider line */
-    .divider {
-      width: 56px;
-      height: 2px;
-      margin-top: 32px;
-      background: linear-gradient(90deg, #0D2B1E 40%, #1EE8A0 40%);
-    }
-
-    /* Role label */
-    .role {
-      margin-top: 20px;
+    .text-layer .role {
       font-size: 22px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      white-space: nowrap;
     }
 
-    .role-wrapper {
-      width: 1080px;
-      display: flex;
-      justify-content: center;
+    /* Left layer — dark green text, clipped to emerald zone */
+    .layer-left {
+      clip-path: inset(0 648px 0 0);
+      z-index: 5;
     }
+    .layer-left .name { color: #0D2B1E; }
+    .layer-left .divider { background: #0D2B1E; }
+    .layer-left .role { color: #0D2B1E; }
 
-    .role-wrapper .role {
-      background: linear-gradient(90deg, #0D2B1E 40%, #FFFFFF 40%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 1080px 100%;
-      background-position: left center;
+    /* Right layer — white/emerald text, clipped to dark zone */
+    .layer-right {
+      clip-path: inset(0 0 0 432px);
+      z-index: 5;
     }
+    .layer-right .name { color: #FFFFFF; }
+    .layer-right .divider { background: #1EE8A0; }
+    .layer-right .role { color: #FFFFFF; }
 
-    /* Bottom URL — bottom-right on dark zone */
-    .website {
-      position: absolute;
-      bottom: 50px;
-      right: 50px;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.25);
-      letter-spacing: 0.3px;
-      z-index: 10;
-    }
-
-    /* "rejoint l'equipe" — bottom-left on emerald zone */
-    .joins-line {
+    /* Bottom labels */
+    .joins {
       position: absolute;
       bottom: 50px;
       left: 50px;
@@ -194,38 +123,40 @@
       text-transform: uppercase;
       z-index: 10;
     }
+
+    .url {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.25);
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Split background -->
-  <div class="bg-left"></div>
-  <div class="bg-right"></div>
+  <div class="panel-left"></div>
 
-  <!-- Logo -->
   <div class="logo">bleen</div>
 
-  <!-- Main centered content -->
-  <div class="content">
-
-    <!-- DENIS -->
-    <div class="name-wrapper">
-      <span class="name-text">DENIS</span>
-    </div>
-
-    <!-- Divider line -->
+  <!-- Left zone text (dark on emerald) -->
+  <div class="text-layer layer-left">
+    <span class="name">DENIS</span>
     <div class="divider"></div>
-
-    <!-- Role -->
-    <div class="role-wrapper">
-      <span class="role">Graphic Designer</span>
-    </div>
-
+    <span class="role">Graphic Designer</span>
   </div>
 
-  <!-- Bottom labels -->
-  <div class="joins-line">rejoint l'equipe</div>
-  <div class="website">bleen.be</div>
+  <!-- Right zone text (white on dark) -->
+  <div class="text-layer layer-right">
+    <span class="name">DENIS</span>
+    <div class="divider"></div>
+    <span class="role">Graphic Designer</span>
+  </div>
+
+  <span class="joins">rejoint l'equipe</span>
+  <span class="url">bleen.be</span>
 
 </body>
 </html>
