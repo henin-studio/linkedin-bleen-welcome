@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis v15</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      z-index: 1;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 24px;
+      color: #1EE8A0;
+      letter-spacing: -0.02em;
+    }
+
+    /* Center content */
+    .center-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* Avatar row */
+    .avatar-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      background-size: cover;
+      background-position: center top;
+      flex-shrink: 0;
+    }
+
+    .avatar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar-wrapper .avatar {
+      /* default, overridden for Denis */
+    }
+
+    .avatar-denis {
+      width: 160px;
+      height: 160px;
+      border: 3px solid #1EE8A0;
+      box-shadow: 0 0 30px rgba(30, 232, 160, 0.15);
+    }
+
+    .new-label {
+      font-weight: 600;
+      font-size: 10px;
+      color: #1EE8A0;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Text block */
+    .text-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .headline {
+      font-size: 36px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .headline-strong {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .headline-light {
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: #1EE8A0;
+      margin: 24px auto 16px;
+    }
+
+    .tagline {
+      font-weight: 400;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.35);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Bottom */
+    .bottom {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.2);
+      font-weight: 400;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top brand -->
+  <div class="top-bar">
+    <span class="brand">bleen</span>
+  </div>
+
+  <!-- Center block -->
+  <div class="center-content">
+
+    <!-- Avatar row -->
+    <div class="avatar-row">
+
+      <!-- Avatar 1 -->
+      <div class="avatar" style="background-image: url('assets/avatars/ODE.png');"></div>
+
+      <!-- Avatar 2 -->
+      <div class="avatar" style="background-image: url('assets/avatars/VPL- Valentin Plumier (3).png');"></div>
+
+      <!-- Avatar 3 — Denis (larger, highlighted) -->
+      <div class="avatar-wrapper">
+        <div class="avatar avatar-denis" style="background-image: url('assets/avatars/DHE_Colors.png');"></div>
+        <span class="new-label">new</span>
+      </div>
+
+      <!-- Avatar 4 -->
+      <div class="avatar" style="background-image: url('assets/avatars/SDE.png');"></div>
+
+      <!-- Avatar 5 -->
+      <div class="avatar" style="background-image: url('assets/avatars/JTO.png');"></div>
+
+    </div>
+
+    <!-- Text -->
+    <div class="text-block">
+      <p class="headline">
+        <span class="headline-strong">Denis rejoint Bleen</span>
+      </p>
+      <p class="headline">
+        <span class="headline-light">comme Graphic Designer.</span>
+      </p>
+      <div class="divider"></div>
+      <p class="tagline">Le design au service de la clarte.</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom url -->
+  <div class="bottom">bleen.be</div>
+
+</body>
+</html>

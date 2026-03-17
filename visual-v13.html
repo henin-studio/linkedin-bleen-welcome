@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis Welcome v13</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: #0D2B1E;
+    }
+
+    /* ——— AVANT zone ——— */
+    .zone-avant {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .label-avant {
+      position: absolute;
+      top: 40px;
+      left: 50px;
+      font-weight: 600;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .data-noise span {
+      position: absolute;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 1);
+      white-space: nowrap;
+    }
+
+    /* ——— Divider ——— */
+    .divider {
+      position: absolute;
+      top: 500px;
+      left: 0;
+      width: 1080px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ——— APRES zone ——— */
+    .zone-apres {
+      position: absolute;
+      top: 500px;
+      left: 0;
+      width: 1080px;
+      height: 540px;
+    }
+
+    .label-apres {
+      position: absolute;
+      top: 20px;
+      left: 50px;
+      font-weight: 600;
+      font-size: 11px;
+      color: rgba(30, 232, 160, 0.6);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .apres-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .bar-track {
+      width: 300px;
+      height: 8px;
+      background: rgba(30, 232, 160, 0.08);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 4px;
+      background: #1EE8A0;
+    }
+
+    .bar-fill.w-60  { width: 60%;  opacity: 1.0; }
+    .bar-fill.w-45  { width: 45%;  opacity: 0.7; }
+    .bar-fill.w-80  { width: 80%;  opacity: 0.5; }
+    .bar-fill.w-35  { width: 35%;  opacity: 0.3; }
+
+    .identity {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .name {
+      font-weight: 700;
+      font-size: 28px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .title {
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ——— Bottom bar ——— */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1080px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 20px;
+      color: #1EE8A0;
+    }
+
+    .brand-url {
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+
+    <!-- AVANT zone -->
+    <div class="zone-avant">
+      <span class="label-avant">Avant</span>
+      <div class="data-noise">
+        <!-- Row ~80-130px -->
+        <span style="top:82px;  left:72px;  font-size:12px; opacity:0.09;">0.847</span>
+        <span style="top:88px;  left:190px; font-size:14px; opacity:0.11;">tCO2e</span>
+        <span style="top:79px;  left:310px; font-size:10px; opacity:0.08;">GRI 305-1</span>
+        <span style="top:91px;  left:450px; font-size:13px; opacity:0.12;">4.2%</span>
+        <span style="top:84px;  left:570px; font-size:11px; opacity:0.07;">Scope 1</span>
+        <span style="top:86px;  left:690px; font-size:15px; opacity:0.10;">18.34</span>
+        <span style="top:80px;  left:810px; font-size:12px; opacity:0.09;">kWh/m²</span>
+        <span style="top:87px;  left:930px; font-size:10px; opacity:0.08;">-3.1%</span>
+        <!-- Row ~130-175px -->
+        <span style="top:131px; left:55px;  font-size:13px; opacity:0.13;">52 891</span>
+        <span style="top:138px; left:170px; font-size:11px; opacity:0.07;">Scope 3</span>
+        <span style="top:133px; left:285px; font-size:14px; opacity:0.10;">0.062</span>
+        <span style="top:140px; left:390px; font-size:10px; opacity:0.09;">GRI 302-3</span>
+        <span style="top:135px; left:510px; font-size:16px; opacity:0.06;">tCO2e</span>
+        <span style="top:142px; left:630px; font-size:12px; opacity:0.11;">kWh/m²</span>
+        <span style="top:130px; left:750px; font-size:13px; opacity:0.08;">7.4%</span>
+        <span style="top:137px; left:870px; font-size:11px; opacity:0.12;">1 204</span>
+        <span style="top:132px; left:990px; font-size:10px; opacity:0.07;">0.9</span>
+        <!-- Row ~180-225px -->
+        <span style="top:181px; left:68px;  font-size:11px; opacity:0.08;">GRI 305-2</span>
+        <span style="top:188px; left:200px; font-size:15px; opacity:0.06;">29.7%</span>
+        <span style="top:183px; left:330px; font-size:10px; opacity:0.13;">Scope 2</span>
+        <span style="top:190px; left:440px; font-size:14px; opacity:0.09;">0.341</span>
+        <span style="top:185px; left:560px; font-size:12px; opacity:0.08;">kgCO2e</span>
+        <span style="top:192px; left:680px; font-size:13px; opacity:0.11;">8 447</span>
+        <span style="top:180px; left:800px; font-size:11px; opacity:0.07;">GRI 302-1</span>
+        <span style="top:187px; left:920px; font-size:16px; opacity:0.09;">1.2</span>
+        <!-- Row ~235-280px -->
+        <span style="top:238px; left:60px;  font-size:14px; opacity:0.10;">12.6%</span>
+        <span style="top:245px; left:175px; font-size:10px; opacity:0.09;">tCO2e</span>
+        <span style="top:240px; left:275px; font-size:13px; opacity:0.12;">GRI 303-1</span>
+        <span style="top:247px; left:420px; font-size:11px; opacity:0.07;">0.078</span>
+        <span style="top:242px; left:520px; font-size:15px; opacity:0.08;">Scope 1</span>
+        <span style="top:249px; left:650px; font-size:12px; opacity:0.11;">kWh/m²</span>
+        <span style="top:237px; left:770px; font-size:10px; opacity:0.09;">3 890</span>
+        <span style="top:244px; left:880px; font-size:13px; opacity:0.06;">GRI 305-3</span>
+        <!-- Row ~290-335px -->
+        <span style="top:293px; left:75px;  font-size:16px; opacity:0.07;">0.519</span>
+        <span style="top:300px; left:200px; font-size:11px; opacity:0.13;">Scope 2</span>
+        <span style="top:295px; left:310px; font-size:12px; opacity:0.08;">-8.3%</span>
+        <span style="top:302px; left:420px; font-size:10px; opacity:0.10;">GRI 302-4</span>
+        <span style="top:297px; left:545px; font-size:14px; opacity:0.09;">tCO2e</span>
+        <span style="top:304px; left:660px; font-size:13px; opacity:0.07;">17 233</span>
+        <span style="top:291px; left:785px; font-size:11px; opacity:0.11;">kWh/m²</span>
+        <span style="top:298px; left:910px; font-size:15px; opacity:0.08;">0.4%</span>
+        <!-- Row ~345-390px -->
+        <span style="top:348px; left:58px;  font-size:12px; opacity:0.09;">GRI 305-4</span>
+        <span style="top:355px; left:185px; font-size:10px; opacity:0.12;">6 712</span>
+        <span style="top:350px; left:285px; font-size:15px; opacity:0.07;">Scope 3</span>
+        <span style="top:357px; left:410px; font-size:13px; opacity:0.10;">0.224</span>
+        <span style="top:352px; left:530px; font-size:11px; opacity:0.08;">kgCO2e</span>
+        <span style="top:359px; left:660px; font-size:14px; opacity:0.11;">44.1%</span>
+        <span style="top:347px; left:790px; font-size:10px; opacity:0.09;">GRI 302-2</span>
+        <span style="top:354px; left:920px; font-size:12px; opacity:0.07;">2 056</span>
+        <!-- Row ~400-445px -->
+        <span style="top:403px; left:70px;  font-size:13px; opacity:0.11;">0.007</span>
+        <span style="top:410px; left:190px; font-size:11px; opacity:0.08;">tCO2e</span>
+        <span style="top:405px; left:300px; font-size:10px; opacity:0.13;">GRI 305-5</span>
+        <span style="top:412px; left:430px; font-size:16px; opacity:0.06;">kWh/m²</span>
+        <span style="top:407px; left:560px; font-size:12px; opacity:0.10;">Scope 1</span>
+        <span style="top:414px; left:680px; font-size:14px; opacity:0.08;">9 101</span>
+        <span style="top:402px; left:800px; font-size:11px; opacity:0.12;">-1.7%</span>
+        <span style="top:409px; left:930px; font-size:13px; opacity:0.09;">0.88</span>
+        <!-- Row ~455-490px -->
+        <span style="top:458px; left:62px;  font-size:10px; opacity:0.08;">GRI 302-5</span>
+        <span style="top:465px; left:180px; font-size:14px; opacity:0.07;">31 440</span>
+        <span style="top:460px; left:310px; font-size:12px; opacity:0.11;">Scope 2</span>
+        <span style="top:467px; left:430px; font-size:11px; opacity:0.09;">0.156</span>
+        <span style="top:462px; left:550px; font-size:15px; opacity:0.06;">tCO2e</span>
+        <span style="top:469px; left:680px; font-size:13px; opacity:0.10;">kWh/m²</span>
+        <span style="top:456px; left:805px; font-size:10px; opacity:0.08;">GRI 303-3</span>
+        <span style="top:463px; left:940px; font-size:12px; opacity:0.13;">5.9%</span>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- APRES zone -->
+    <div class="zone-apres">
+      <span class="label-apres">Après</span>
+
+      <div class="apres-content">
+        <div class="bar-chart">
+          <div class="bar-track"><div class="bar-fill w-60"></div></div>
+          <div class="bar-track"><div class="bar-fill w-45"></div></div>
+          <div class="bar-track"><div class="bar-fill w-80"></div></div>
+          <div class="bar-track"><div class="bar-fill w-35"></div></div>
+        </div>
+        <div class="identity">
+          <span class="name">Denis</span>
+          <span class="title">Graphic Designer — Bleen</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="bottom-bar">
+      <span class="brand-name">bleen</span>
+      <span class="brand-url">bleen.be</span>
+    </div>
+
+  </div>
+</body>
+</html>

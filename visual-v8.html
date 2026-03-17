@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis rejoint l'équipe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+    }
+
+    /* Photo area — top 720px, but extends 80px into bar zone for the blend */
+    .photo-area {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 800px; /* 720 + 80px overlap */
+    }
+
+    .photo-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* Gradient overlay — from transparent to dark green, covers the bottom ~200px of the photo */
+    .photo-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 260px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(13, 43, 30, 0.15) 30%,
+        rgba(13, 43, 30, 0.55) 60%,
+        rgba(13, 43, 30, 0.85) 85%,
+        #0D2B1E 100%
+      );
+    }
+
+    /* Bottom bar — starts at 720px, height 360px */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1080px;
+      height: 360px;
+      background: #0D2B1E;
+      overflow: hidden;
+    }
+
+    /* Subtle noise on the bar only */
+    .bottom-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    /* Content inside bar — centered vertically, left-aligned */
+    .bar-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 30px; /* push down slightly since gradient bleeds in from top */
+    }
+
+    .brand-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: #1EE8A0;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      margin-bottom: 16px;
+    }
+
+    .headline-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 24px;
+    }
+
+    .headline-main {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: #FFFFFF;
+      line-height: 1.25;
+    }
+
+    .headline-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.25;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: #1EE8A0;
+      margin-bottom: 16px;
+    }
+
+    .site-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+
+    <!-- Photo fills top portion, extends slightly into bar zone -->
+    <div class="photo-area">
+      <img src="assets/generated/team-coffee-lounge.png" alt="Équipe Bleen" style="object-position: center 60%;">
+      <div class="photo-gradient"></div>
+    </div>
+
+    <!-- Dark green caption bar -->
+    <div class="bottom-bar">
+      <div class="bar-content">
+        <div class="brand-label">bleen</div>
+
+        <div class="headline-block">
+          <span class="headline-main">Denis rejoint l'équipe</span>
+          <span class="headline-sub">comme Graphic Designer.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="site-label">bleen.be</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — L'équipe s'agrandit — v10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      display: flex;
+    }
+
+    /* Left photo area */
+    .photo-area {
+      position: relative;
+      width: 648px;
+      height: 1080px;
+      flex-shrink: 0;
+    }
+
+    .photo-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/generated/team-coffee-casual.png');
+      background-size: cover;
+      background-position: center bottom;
+    }
+
+    /* Right-edge gradient for smooth transition into dark green panel */
+    .photo-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 70%, #0D2B1E 100%);
+    }
+
+    /* Right panel */
+    .panel {
+      width: 432px;
+      height: 1080px;
+      background: #0D2B1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .panel-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1EE8A0;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+    }
+
+    .spacer-lg {
+      height: 30px;
+    }
+
+    .headline {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+    }
+
+    .spacer-md {
+      height: 16px;
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 2px;
+      background: #1EE8A0;
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1EE8A0;
+    }
+
+    .role {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .url {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+
+    <!-- Left: photo -->
+    <div class="photo-area">
+      <div class="photo-bg"></div>
+      <div class="photo-fade"></div>
+    </div>
+
+    <!-- Right: dark green panel -->
+    <div class="panel">
+      <div class="panel-content">
+        <span class="brand">bleen</span>
+        <div class="spacer-lg"></div>
+        <h1 class="headline">L'équipe<br>s'agrandit.</h1>
+        <div class="spacer-md"></div>
+        <div class="accent-line"></div>
+        <div class="spacer-md"></div>
+        <span class="name">Denis</span>
+        <span class="role">Graphic Designer</span>
+        <div class="spacer-lg"></div>
+        <span class="url">bleen.be</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

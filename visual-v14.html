@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Denis, Graphic Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: #0D2B1E;
+    }
+
+    /* TOP SECTION */
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 340px;
+      background: #0D2B1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      font-size: 24px;
+      font-weight: 800;
+      color: #1EE8A0;
+      letter-spacing: -0.02em;
+    }
+
+    .top-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px; /* slight offset to account for logo row */
+    }
+
+    .headline {
+      font-size: 44px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: #1EE8A0;
+    }
+
+    /* PHOTO STRIP */
+    .photo-strip {
+      position: absolute;
+      top: 340px;
+      left: 0;
+      width: 1080px;
+      height: 340px;
+      background-image: url('assets/generated/team-coffee-lounge.png');
+      background-size: cover;
+      background-position: center 55%;
+    }
+
+    .photo-strip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(to right, #0D2B1E, transparent);
+      z-index: 1;
+    }
+
+    .photo-strip::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(to left, #0D2B1E, transparent);
+      z-index: 1;
+    }
+
+    /* BOTTOM SECTION */
+    .bottom {
+      position: absolute;
+      top: 680px;
+      left: 0;
+      width: 1080px;
+      height: 400px;
+      background: #0D2B1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottom-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1EE8A0;
+      margin-top: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .tagline {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+      font-style: italic;
+      margin-top: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    .site {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="top">
+      <span class="logo">bleen</span>
+      <div class="top-content">
+        <span class="headline">L'équipe s'agrandit.</span>
+        <div class="divider"></div>
+      </div>
+    </div>
+
+    <div class="photo-strip"></div>
+
+    <div class="bottom">
+      <div class="bottom-content">
+        <span class="name">Denis</span>
+        <span class="role">Graphic Designer</span>
+        <span class="tagline">Rendre la durabilité visible.</span>
+      </div>
+      <span class="site">bleen.be</span>
+    </div>
+  </div>
+</body>
+</html>

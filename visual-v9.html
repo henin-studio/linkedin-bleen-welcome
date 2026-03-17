@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Nouvelle recrue v9</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=block" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+    }
+
+    /* Full bleed photo */
+    .photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/generated/team-green-sofa.png');
+      background-size: cover;
+      background-position: center 55%;
+    }
+
+    /* Dark gradient overlay */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(13,43,30,0.15) 0%, rgba(13,43,30,0.6) 45%, rgba(13,43,30,0.92) 75%, rgba(13,43,30,0.97) 100%),
+        linear-gradient(135deg, transparent 30%, rgba(13,43,30,0.3) 100%);
+    }
+
+    /* Top border */
+    .canvas::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(30, 232, 160, 0.3);
+      z-index: 10;
+    }
+
+    /* Emerald accent line */
+    .accent-line {
+      position: absolute;
+      left: 50px;
+      top: 60%;
+      width: 3px;
+      height: 25%;
+      background: #1EE8A0;
+      z-index: 5;
+    }
+
+    /* Bleen wordmark — top left */
+    .wordmark {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      color: #1EE8A0;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    /* Bottom content block */
+    .content {
+      position: absolute;
+      bottom: 60px;
+      left: 60px;
+      right: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: #1EE8A0;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .name-first {
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .name-last {
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1;
+      margin-top: 6px;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: #1EE8A0;
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.4;
+    }
+
+    /* URL — bottom right */
+    .url {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="photo"></div>
+    <div class="overlay"></div>
+
+    <div class="accent-line"></div>
+    <div class="wordmark">bleen</div>
+
+    <div class="content">
+      <div class="label">Nouvelle recrue</div>
+      <div class="name"><span class="name-first">Denis</span></div>
+      <div class="role">Graphic Designer</div>
+      <div class="divider"></div>
+      <div class="tagline">Rendre la durabilité visible, claire et honnête.</div>
+    </div>
+
+    <div class="url">bleen.be</div>
+  </div>
+</body>
+</html>

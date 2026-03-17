@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Bleen — Timeline Entry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=block" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: #0D2B1E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: #0D2B1E;
+    }
+
+    /* Noise overlay */
+    .canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 50px 50px 0 50px;
+      z-index: 2;
+    }
+
+    .header-logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1EE8A0;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .header-tagline {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.4;
+    }
+
+    /* Timeline container */
+    .timeline {
+      position: absolute;
+      top: 220px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    /* Vertical line using SVG gradient */
+    .timeline-line {
+      position: absolute;
+      left: 200px;
+      top: 0;
+      width: 2px;
+      height: 600px;
+      background: linear-gradient(
+        to bottom,
+        rgba(30, 232, 160, 0.05) 0%,
+        rgba(30, 232, 160, 0.08) 30%,
+        rgba(30, 232, 160, 0.15) 60%,
+        rgba(30, 232, 160, 0.20) 100%
+      );
+      transform: translateX(-50%);
+    }
+
+    /* Entry base */
+    .entry {
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
+    /* Dot */
+    .dot {
+      position: absolute;
+      left: 200px;
+      transform: translateX(-50%) translateY(-50%);
+      border-radius: 50%;
+    }
+
+    .dot-default {
+      width: 12px;
+      height: 12px;
+      background: rgba(30, 232, 160, 0.2);
+    }
+
+    .dot-highlight {
+      width: 16px;
+      height: 16px;
+      background: #1EE8A0;
+      box-shadow: 0 0 20px rgba(30, 232, 160, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.8; }
+      50%       { opacity: 1.0; }
+    }
+
+    /* Entry content */
+    .entry-content {
+      position: absolute;
+      left: 240px;
+      right: 50px;
+    }
+
+    .entry-year {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .entry-title {
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+
+    .entry-subtitle {
+      line-height: 1.4;
+    }
+
+    /* Entry 1 */
+    .entry-1 { top: 40px; }
+    .entry-1 .dot { top: 0; }
+    .entry-1 .entry-content { top: -8px; }
+    .entry-1 .entry-year { color: rgba(255, 255, 255, 0.3); }
+    .entry-1 .entry-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .entry-1 .entry-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Entry 2 */
+    .entry-2 { top: 220px; }
+    .entry-2 .dot { top: 0; }
+    .entry-2 .entry-content { top: -8px; }
+    .entry-2 .entry-year { color: rgba(255, 255, 255, 0.3); }
+    .entry-2 .entry-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .entry-2 .entry-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Entry 3 — highlighted */
+    .entry-3 { top: 400px; }
+    .entry-3 .dot { top: 0; }
+    .entry-3 .entry-content { top: -10px; }
+    .entry-3 .entry-year { color: #1EE8A0; }
+    .entry-3 .entry-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+    .entry-3 .entry-role {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1EE8A0;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .entry-3 .entry-description {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.2);
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-logo">bleen</div>
+      <div class="header-tagline">Notre histoire continue.</div>
+    </header>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <!-- Entry 1: 2020 -->
+      <div class="entry entry-1">
+        <div class="dot dot-default"></div>
+        <div class="entry-content">
+          <div class="entry-year">2020</div>
+          <div class="entry-title">Fondation de Bleen</div>
+          <div class="entry-subtitle">Conseil en durabilite, Bruxelles</div>
+        </div>
+      </div>
+
+      <!-- Entry 2: 2023 -->
+      <div class="entry entry-2">
+        <div class="dot dot-default"></div>
+        <div class="entry-content">
+          <div class="entry-year">2023</div>
+          <div class="entry-title">Premiers rapports CSRD</div>
+          <div class="entry-subtitle">Accompagnement ESG pour 15+ entreprises</div>
+        </div>
+      </div>
+
+      <!-- Entry 3: Mars 2026 — highlighted -->
+      <div class="entry entry-3">
+        <div class="dot dot-highlight"></div>
+        <div class="entry-content">
+          <div class="entry-year">Mars 2026</div>
+          <div class="entry-title">Denis rejoint l'equipe</div>
+          <div class="entry-role">Graphic Designer</div>
+          <div class="entry-description">Rendre la durabilite visible et comprehensible.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">bleen.be</footer>
+
+  </div>
+</body>
+</html>
