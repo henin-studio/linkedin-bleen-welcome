@@ -80,9 +80,24 @@
       left: 0;
       width: 1080px;
       height: 340px;
-      background-image: url('assets/generated/team-coffee-lounge.png');
-      background-size: cover;
-      background-position: center 55%;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(30, 232, 160, 0.06),
+        rgba(30, 232, 160, 0.06) 20px,
+        transparent 20px,
+        transparent 40px
+      ), #0F3425;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-strip .placeholder-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(30, 232, 160, 0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .photo-strip::before {
@@ -172,7 +187,9 @@
       </div>
     </div>
 
-    <div class="photo-strip"></div>
+    <div class="photo-strip">
+      <span class="placeholder-label">Photo à venir</span>
+    </div>
 
     <div class="bottom">
       <div class="bottom-content">
